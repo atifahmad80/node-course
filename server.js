@@ -1,6 +1,9 @@
 const express=require('express');
 const hbs=require('hbs');
 const fs=require('fs');
+
+const port=process.env.Port||3000;
+
 var app=express();
 
 hbs.registerPartials(__dirname + '/views/partials')
@@ -20,9 +23,9 @@ app.use((req,res,next)=>{
   next();
 })
 
-app.use((req,res,next)=>{
-  res.render('maintenance.hbs');
-})
+// app.use((req,res,next)=>{
+//   res.render('maintenance.hbs');
+// })
 
 app.use(express.static(__dirname));
 
@@ -55,6 +58,6 @@ app.get('/bad',(req,res)=>{
 
 });
 
-app.listen(3000,()=>{
-  console.log("server is up");
+app.listen(port,()=>{
+  console.log(`server is up on ${port}` );
 });
